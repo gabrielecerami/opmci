@@ -13,7 +13,7 @@ describe group('mysql') do
   it { should exist }
 end
 
-describe service('mariadb-server') do
+describe service('mariadb') do
   it { should be_enabled }
   it { should be_running }
 end
