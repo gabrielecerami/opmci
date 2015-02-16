@@ -1,0 +1,12 @@
+---
+# puppetlabs-mysql tests
+puppetlabs-mysql-root_password: password
+puppetlabs-mysql-package_name: mariadb-galera-server
+puppetlabs-mysql-bind_address: 0.0.0.0
+puppetlabs-mysql-default_storage_engine: InnoDB
+
+# puppet-keystone tests
+
+# puppet-cinder tests
+
+# puppet-glance testsq

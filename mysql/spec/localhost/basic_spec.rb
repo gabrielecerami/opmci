@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 #
 # Copyright (C) 2015 Red Hat, Inc.
 #
@@ -16,22 +14,30 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+require 'spec_helper'
 
-$password = 'password'
+describe package('mariadb-galera-server') do
+  it { should be_installed }
+end
 
-# mariadb-server conflicts with mariadb-galera-server
-package { 'mariadb-server':
-  ensure => absent,
-  before => Class['::mysql::server']
-}
+describe user('mysql') do
+  it { should exist }
+end
 
-class { '::mysql::server':
-  package_name     => 'mariadb-galera-server',
-  root_password    => $password,
-  override_options => {
-    'mysqld' => {
-      bind_address           => '0.0.0.0',
-      default_storage_engine => 'InnoDB',
-    }
-  }
-}
+describe group('mysql') do
+  it { should exist }
+end
+
+describe service('mariadb') do
+  it { should be_enabled }
+  it { should be_running }
+end
+
+describe port(3306) do
+  it { should be_listening.with('tcp') }
+end
+
+describe port(4567) do
+  it { should be_listening.with('tcp') }
+end
