@@ -6,6 +6,10 @@ puppetlabs-mysql-bind_address: 0.0.0.0
 puppetlabs-mysql-default_storage_engine: InnoDB
 
 # puppet-keystone tests
+puppet-keystone-db_host: localhost
+puppet-keystone-db_user: root
+puppet-keystone-db_password: password
+puppet-keystone-admin_token: token
 
 # puppet-cinder tests
 
