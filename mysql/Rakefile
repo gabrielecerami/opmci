@@ -1,8 +1,15 @@
 require 'rake'
 require 'rspec/core/rake_task'
+require 'yaml'
 
 task :spec    => 'spec:all'
 task :default => :spec
+
+if File.file?('properties.yaml')
+  properties = YAML.load_file('properties.yaml')
+else
+  properties = nil
+end
 
 namespace :spec do
   targets = []
@@ -18,6 +25,9 @@ namespace :spec do
     desc "Run serverspec tests to #{target}"
     RSpec::Core::RakeTask.new(target.to_sym) do |t|
       ENV['TARGET_HOST'] = target
+      if properties
+        set_property properties
+      end
       t.pattern = "spec/#{target}/*_spec.rb"
     end
   end
