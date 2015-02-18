@@ -42,10 +42,6 @@ describe file('/etc/keystone/keystone.conf') do
   it { should be_mode 600 }
   it { should be_owned_by 'keystone' }
   it { should be_grouped_by 'keystone' }
-  its(:content) do
-    should match /admin_token\s*=\s*${property[:admin_token]}/
-    should match /connection\s*=\s*mysql:\/\/${property[:db_user]}:${property[:db_password]}@${property[:db_host]}\/keystone/
-  end
 end
 
 describe service('openstack-keystone') do
