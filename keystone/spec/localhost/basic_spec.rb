@@ -20,28 +20,28 @@ describe file('/etc/keystone') do
   it { should be_directory }
   it { should be_mode 750 }
   it { should be_owned_by 'keystone' }
-  it { should be_grouped_by 'keystone' }
+  it { should be_grouped_into 'keystone' }
 end
 
 describe file('/var/log/keystone') do
   it { should be_directory }
   it { should be_mode 750 }
   it { should be_owned_by 'keystone' }
-  it { should be_grouped_by 'keystone' }
+  it { should be_grouped_into 'keystone' }
 end
 
 describe file('/var/lib/keystone') do
   it { should be_directory }
   it { should be_mode 750 }
   it { should be_owned_by 'keystone' }
-  it { should be_grouped_by 'keystone' }
+  it { should be_grouped_into 'keystone' }
 end
 
 describe file('/etc/keystone/keystone.conf') do
   it { should be_file }
   it { should be_mode 600 }
   it { should be_owned_by 'keystone' }
-  it { should be_grouped_by 'keystone' }
+  it { should be_grouped_into 'keystone' }
 end
 
 describe service('openstack-keystone') do
