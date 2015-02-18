@@ -12,5 +12,11 @@ puppet-keystone-db_password: password
 puppet-keystone-admin_token: token
 
 # puppet-cinder tests
+puppet-cinder-db_host: localhost
+puppet-cinder-db_user: root
+puppet-cinder-db_password: password
+puppet-cinder-keystone_password: password
+puppet-cinder-keystone_auth_host: localhost
+puppet-cinder-iscsi_ip_address: localhost
 
 # puppet-glance testsq
