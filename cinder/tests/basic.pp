@@ -38,6 +38,9 @@ remote_database_grant { "${db_user}@%%/cinder":
 
 class { '::cinder':
   database_connection => "mysql://${db_user}:${db_password}@${db_host}/cinder",
+  rabbit_host         => hiera('puppet-cinder-rabbit_host'),
+  rabbit_userid       => hiera('puppet-cinder-rabbit_userid'),
+  rabbit_password     => hiera('puppet-cinder-rabbit_password'),
 }
 
 class { '::cinder::api':

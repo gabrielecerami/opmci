@@ -27,7 +27,7 @@ remote_database { 'keystone':
   db_user     => $db_user,
   db_password => $db_password,
   provider    => 'mysql',
-} -> 	
+} ->
 remote_database_grant { "${db_user}@%%/keystone":
   privileges  => 'all',
   db_host     => $db_host,
@@ -39,5 +39,8 @@ remote_database_grant { "${db_user}@%%/keystone":
 class { '::keystone':
   admin_token         => hiera('puppet-keystone-admin_token'),
   database_connection => "mysql://${db_user}:${db_password}@${db_host}/keystone",
+  rabbit_host         => hiera('puppet-keystone-rabbit_host'),
+  rabbit_userid       => hiera('puppet-keystone-rabbit_userid'),
+  rabbit_password     => hiera('puppet-keystone-rabbit_password'),
   service_name        => 'keystone',
 }

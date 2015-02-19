@@ -5,18 +5,28 @@ puppetlabs-mysql-package_name: mariadb-galera-server
 puppetlabs-mysql-bind_address: 0.0.0.0
 puppetlabs-mysql-default_storage_engine: InnoDB
 
+# puppetlabs-rabbitmq tests
+puppetlabs-rabbitmq-default_user: user
+puppetlabs-rabbitmq-default_pass: password
+
 # puppet-keystone tests
 puppet-keystone-db_host: localhost
 puppet-keystone-db_user: root
 puppet-keystone-db_password: password
+puppet-keystone-rabbit_host: localhost
+puppet-keystone-rabbit_userid: user
+puppet-keystone-rabbit_password: password
 puppet-keystone-admin_token: token
 
 # puppet-cinder tests
 puppet-cinder-db_host: localhost
 puppet-cinder-db_user: root
 puppet-cinder-db_password: password
+puppet-cinder-rabbit_host: localhost
+puppet-cinder-rabbit_userid: user
+puppet-cinder-rabbit_password: password
 puppet-cinder-keystone_password: password
 puppet-cinder-keystone_auth_host: localhost
 puppet-cinder-iscsi_ip_address: localhost
 
-# puppet-glance testsq
+# puppet-glance tests
