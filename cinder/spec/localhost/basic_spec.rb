@@ -21,19 +21,15 @@ describe package('openstack-cinder') do
   it { should be_installed }
 end
 
-describe package('openstack-cinder-api') do
-  it { should be_installed }
-end
-
-describe package('openstack-cinder-scheduler') do
-  it { should be_installed }
-end
-
 describe package('python-cinderclient') do
   it { should be_installed }
 end
 
-describe package('targetcli') do
+describe package('targetcli'), :if => os[:family] == 'redhat' do
+  it { should be_installed }
+end
+
+describe package('scsi-target-utils'), :if => os[:family] == 'fedora' do
   it { should be_installed }
 end
 
@@ -52,7 +48,7 @@ describe file('/etc/cinder/cinder.conf') do
   it { should be_grouped_into 'cinder' }
   its(:content) do
     should match /enabled_backends\s*=\s*lvm/
-    should match /volume_backend_name\s*=\s*lvm
+    should match /volume_backend_name\s*=\s*lvm/
     should match /volume_group\s*=\s*cinder-volumes/
     should match /volume_driver\s*=\s*cinder.volume.drivers.lvm.LVMISCSIDriver/
   end
@@ -63,11 +59,6 @@ describe file('/etc/cinder/api-paste.ini') do
   it { should be_mode 600 }
   it { should be_owned_by 'cinder' }
   it { should be_grouped_into 'cinder' }
-end
-
-describe service('openstack-cinder') do
-  it { should be_enabled }
-  it { should be_running }
 end
 
 describe service('openstack-cinder-api') do
@@ -85,7 +76,12 @@ describe service('openstack-cinder-volume') do
   it { should be_running }
 end
 
-describe service('target') do
+describe service('target'), :if => os[:family] == 'redhat' do
+  it { should be_enabled }
+  it { should be_running }
+end
+
+describe service('tgtd'), :if => os[:family] == 'fedora' do
   it { should be_enabled }
   it { should be_running }
 end
