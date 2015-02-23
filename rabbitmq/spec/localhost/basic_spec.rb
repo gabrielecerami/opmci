@@ -27,5 +27,5 @@ describe service('rabbitmq-server') do
 end
 
 describe port(5672) do
-  it { should be_listening.with('tcp') }
+  it { should be_listening }
 end
